@@ -10,8 +10,9 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use SebastianBergmann\CodeCoverage\Filter;
 
 class PostsTable
 {
@@ -51,7 +52,11 @@ class PostsTable
                             $data['created_at'],
                             fn($query, $date) => $query->whereDate('created_at', $date)
                         );
-                    })
+                    }),
+                SelectFilter::make('category_id')
+                    ->label('Select Category')
+                    ->relationship('category', 'name')
+                    ->preload()
             ])
             ->recordActions([
                 EditAction::make(),
