@@ -56,7 +56,7 @@ class PostsTable
                     ->boolean()
                     ->label('Published')
                     ->toggleable(),
-            ])->defaultSort('title', 'asc')
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 Filter::make('created_at')
                     ->label('Creation Date')
