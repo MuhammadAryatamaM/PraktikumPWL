@@ -35,6 +35,7 @@ class TagsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
+                TextColumn::make('tag_id'),
                 TextColumn::make('name')
                     ->searchable(),
             ])
