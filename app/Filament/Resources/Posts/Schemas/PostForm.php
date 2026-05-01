@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use App\Models\Category;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -42,8 +43,9 @@ class PostForm
                             ]),
                         Select::make('category_id')
                             ->relationship("category", "name")
+                            ->options(Category::all()->pluck("name", "category_id"))
                             ->required()
-                            ->preload()
+                            // ->preload()
                             ->searchable()
                             ->validationMessages([
                                 "required" => "Category must be selected"
