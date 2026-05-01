@@ -87,6 +87,7 @@ class PostsTable
                 Action::make('status')
                     ->label('Status Change')
                     ->icon('heroicon-o-check-circle')
+                    ->requiresConfirmation()
                     ->schema([
                         Checkbox::make('published')->default(fn ($record) : bool => $record->published),
                     ])
